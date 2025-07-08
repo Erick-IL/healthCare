@@ -1,0 +1,1132 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedConnect - Sua Saúde em Suas Mãos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-item {
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-item:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+        }
+
+        .sidebar-item.active {
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .chat-message {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .notification-badge {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+    </style>
+    <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border-width:0}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-right-1{right:-0.25rem}.-top-1{top:-0.25rem}.left-4{left:1rem}.right-4{right:1rem}.top-0{top:0px}.top-1\/2{top:50%}.top-4{top:1rem}.z-50{z-index:50}.mx-4{margin-left:1rem;margin-right:1rem}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mr-4{margin-right:1rem}.mt-1{margin-top:0.25rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-12{height:3rem}.h-16{height:4rem}.h-24{height:6rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-screen{height:100vh}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-24{width:6rem}.w-5{width:1.25rem}.w-64{width:16rem}.w-8{width:2rem}.w-full{width:100%}.max-w-4xl{max-width:56rem}.max-w-7xl{max-width:80rem}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-3 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.75rem * var(--tw-space-x-reverse));margin-left:calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-dashed{border-style:dashed}.border-blue-200{--tw-border-opacity:1;border-color:rgb(191 219 254 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.border-yellow-200{--tw-border-opacity:1;border-color:rgb(254 240 138 / var(--tw-border-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-gray-600{--tw-bg-opacity:1;background-color:rgb(75 85 99 / var(--tw-bg-opacity, 1))}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-green-50{--tw-bg-opacity:1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.bg-green-600{--tw-bg-opacity:1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.bg-pink-100{--tw-bg-opacity:1;background-color:rgb(252 231 243 / var(--tw-bg-opacity, 1))}.bg-pink-600{--tw-bg-opacity:1;background-color:rgb(219 39 119 / var(--tw-bg-opacity, 1))}.bg-purple-100{--tw-bg-opacity:1;background-color:rgb(243 232 255 / var(--tw-bg-opacity, 1))}.bg-purple-50{--tw-bg-opacity:1;background-color:rgb(250 245 255 / var(--tw-bg-opacity, 1))}.bg-purple-600{--tw-bg-opacity:1;background-color:rgb(147 51 234 / var(--tw-bg-opacity, 1))}.bg-red-100{--tw-bg-opacity:1;background-color:rgb(254 226 226 / var(--tw-bg-opacity, 1))}.bg-red-500{--tw-bg-opacity:1;background-color:rgb(239 68 68 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/20{background-color:rgb(255 255 255 / 0.2)}.bg-yellow-400{--tw-bg-opacity:1;background-color:rgb(250 204 21 / var(--tw-bg-opacity, 1))}.bg-yellow-50{--tw-bg-opacity:1;background-color:rgb(254 252 232 / var(--tw-bg-opacity, 1))}.bg-opacity-50{--tw-bg-opacity:0.5}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-blue-500{--tw-gradient-from:#3b82f6 var(--tw-gradient-from-position);--tw-gradient-to:rgb(59 130 246 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-green-500{--tw-gradient-from:#22c55e var(--tw-gradient-from-position);--tw-gradient-to:rgb(34 197 94 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-blue-600{--tw-gradient-to:#2563eb var(--tw-gradient-to-position)}.to-green-600{--tw-gradient-to:#16a34a var(--tw-gradient-to-position)}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pl-12{padding-left:3rem}.text-left{text-align:left}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-6xl{font-size:3.75rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.text-blue-100{--tw-text-opacity:1;color:rgb(219 234 254 / var(--tw-text-opacity, 1))}.text-blue-200{--tw-text-opacity:1;color:rgb(191 219 254 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-blue-800{--tw-text-opacity:1;color:rgb(30 64 175 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-green-100{--tw-text-opacity:1;color:rgb(220 252 231 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-green-800{--tw-text-opacity:1;color:rgb(22 101 52 / var(--tw-text-opacity, 1))}.text-orange-500{--tw-text-opacity:1;color:rgb(249 115 22 / var(--tw-text-opacity, 1))}.text-pink-500{--tw-text-opacity:1;color:rgb(236 72 153 / var(--tw-text-opacity, 1))}.text-pink-600{--tw-text-opacity:1;color:rgb(219 39 119 / var(--tw-text-opacity, 1))}.text-pink-800{--tw-text-opacity:1;color:rgb(157 23 77 / var(--tw-text-opacity, 1))}.text-purple-500{--tw-text-opacity:1;color:rgb(168 85 247 / var(--tw-text-opacity, 1))}.text-purple-600{--tw-text-opacity:1;color:rgb(147 51 234 / var(--tw-text-opacity, 1))}.text-purple-700{--tw-text-opacity:1;color:rgb(126 34 206 / var(--tw-text-opacity, 1))}.text-purple-800{--tw-text-opacity:1;color:rgb(107 33 168 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-yellow-300{--tw-text-opacity:1;color:rgb(253 224 71 / var(--tw-text-opacity, 1))}.text-yellow-600{--tw-text-opacity:1;color:rgb(202 138 4 / var(--tw-text-opacity, 1))}.text-yellow-700{--tw-text-opacity:1;color:rgb(161 98 7 / var(--tw-text-opacity, 1))}.text-yellow-800{--tw-text-opacity:1;color:rgb(133 77 14 / var(--tw-text-opacity, 1))}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.after\:absolute::after{content:var(--tw-content);position:absolute}.after\:left-\[2px\]::after{content:var(--tw-content);left:2px}.after\:top-\[2px\]::after{content:var(--tw-content);top:2px}.after\:h-5::after{content:var(--tw-content);height:1.25rem}.after\:w-5::after{content:var(--tw-content);width:1.25rem}.after\:rounded-full::after{content:var(--tw-content);border-radius:9999px}.after\:border::after{content:var(--tw-content);border-width:1px}.after\:border-gray-300::after{content:var(--tw-content);--tw-border-opacity:1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.after\:bg-white::after{content:var(--tw-content);--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.after\:transition-all::after{content:var(--tw-content);transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.after\:content-\[\'\'\]::after{--tw-content:'';content:var(--tw-content)}.hover\:border-blue-300:hover{--tw-border-opacity:1;border-color:rgb(147 197 253 / var(--tw-border-opacity, 1))}.hover\:border-blue-400:hover{--tw-border-opacity:1;border-color:rgb(96 165 250 / var(--tw-border-opacity, 1))}.hover\:bg-blue-50:hover{--tw-bg-opacity:1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-100:hover{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-50:hover{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-700:hover{--tw-bg-opacity:1;background-color:rgb(55 65 81 / var(--tw-bg-opacity, 1))}.hover\:bg-green-100:hover{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.hover\:bg-green-50:hover{--tw-bg-opacity:1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.hover\:bg-green-700:hover{--tw-bg-opacity:1;background-color:rgb(21 128 61 / var(--tw-bg-opacity, 1))}.hover\:bg-pink-700:hover{--tw-bg-opacity:1;background-color:rgb(190 24 93 / var(--tw-bg-opacity, 1))}.hover\:bg-purple-100:hover{--tw-bg-opacity:1;background-color:rgb(243 232 255 / var(--tw-bg-opacity, 1))}.hover\:bg-purple-700:hover{--tw-bg-opacity:1;background-color:rgb(126 34 206 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/30:hover{background-color:rgb(255 255 255 / 0.3)}.hover\:bg-yellow-300:hover{--tw-bg-opacity:1;background-color:rgb(253 224 71 / var(--tw-bg-opacity, 1))}.hover\:text-blue-600:hover{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.hover\:text-blue-800:hover{--tw-text-opacity:1;color:rgb(30 64 175 / var(--tw-text-opacity, 1))}.hover\:text-gray-600:hover{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.hover\:text-gray-800:hover{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.focus\:border-transparent:focus{border-color:transparent}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-blue-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(59 130 246 / var(--tw-ring-opacity, 1))}.peer:checked ~ .peer-checked\:bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.peer:checked ~ .peer-checked\:after\:translate-x-full::after{content:var(--tw-content);--tw-translate-x:100%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.peer:checked ~ .peer-checked\:after\:border-white::after{content:var(--tw-content);--tw-border-opacity:1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.peer:focus ~ .peer-focus\:outline-none{outline:2px solid transparent;outline-offset:2px}.peer:focus ~ .peer-focus\:ring-4{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.peer:focus ~ .peer-focus\:ring-blue-300{--tw-ring-opacity:1;--tw-ring-color:rgb(147 197 253 / var(--tw-ring-opacity, 1))}@media (min-width: 640px){.sm\:flex{display:flex}.sm\:w-auto{width:auto}.sm\:justify-center{justify-content:center}.sm\:space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.sm\:space-y-0 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0px * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0px * var(--tw-space-y-reverse))}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}}@media (min-width: 768px){.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-2{grid-column:span 2 / span 2}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}}</style></head>
+<body class="bg-gray-50">
+<!-- Landing Page (Pre-Login) -->
+<div id="landing-page" class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-heartbeat text-3xl text-blue-600 mr-2"></i>
+                        <span class="text-2xl font-bold text-gray-800">MedConnect</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="showLogin()" class="text-gray-700 hover:text-blue-600 font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition duration-300">
+                        Entrar
+                    </button>
+                    <button onclick="showSignup()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Criar Conta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-8">
+                Sua saúde, <br>
+                <span class="text-yellow-300">no seu tempo</span>
+            </h1>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <i class="fas fa-video text-4xl mb-4 text-yellow-300"></i>
+                    <h3 class="text-xl font-semibold mb-2">Fale com um médico de casa</h3>
+                    <p class="text-white/80">Consultas por vídeo quando você precisar</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <i class="fas fa-user-md text-4xl mb-4 text-yellow-300"></i>
+                    <h3 class="text-xl font-semibold mb-2">Especialistas a um clique</h3>
+                    <p class="text-white/80">Acesso direto aos melhores profissionais</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <i class="fas fa-clock text-4xl mb-4 text-yellow-300"></i>
+                    <h3 class="text-xl font-semibold mb-2">Sem filas, sem espera</h3>
+                    <p class="text-white/80">Agende e seja atendido no horário</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+                <button onclick="showSignup()" class="w-full sm:w-auto bg-yellow-400 text-gray-800 px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-300 transition duration-300 shadow-lg">
+                    Criar Conta Gratuita
+                </button>
+                <button onclick="showLogin()" class="w-full sm:w-auto bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/30 transition duration-300">
+                    Já tenho conta
+                </button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Login Modal -->
+<div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+        <div class="text-center mb-6">
+            <i class="fas fa-heartbeat text-4xl text-blue-600 mb-4"></i>
+            <h2 class="text-2xl font-bold text-gray-800">Entrar na sua conta</h2>
+            <p class="text-gray-600">Acesse seu painel de saúde</p>
+        </div>
+
+        <form onsubmit="handleLogin(event)" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input type="email" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="seu@email.com">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                <input type="password" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Sua senha">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                Entrar
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-gray-600">Não tem conta?
+                <button onclick="showSignup()" class="text-blue-600 hover:underline">Criar conta</button>
+            </p>
+        </div>
+
+        <button onclick="closeModals()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signup-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+        <div class="text-center mb-6">
+            <i class="fas fa-heartbeat text-4xl text-blue-600 mb-4"></i>
+            <h2 class="text-2xl font-bold text-gray-800">Criar sua conta</h2>
+            <p class="text-gray-600">Comece a cuidar da sua saúde hoje</p>
+        </div>
+
+        <form onsubmit="handleSignup(event)" class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nome</label>
+                    <input type="text" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Seu nome">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Sobrenome</label>
+                    <input type="text" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Sobrenome">
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input type="email" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="seu@email.com">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
+                <input type="tel" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="(11) 99999-9999">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                <input type="password" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Crie uma senha">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                Criar Conta
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-gray-600">Já tem conta?
+                <button onclick="showLogin()" class="text-blue-600 hover:underline">Entrar</button>
+            </p>
+        </div>
+
+        <button onclick="closeModals()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Patient Dashboard (Post-Login) -->
+<div id="dashboard" class="hidden min-h-screen bg-gray-50">
+    <!-- Top Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-heartbeat text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">MedConnect</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button class="p-2 text-gray-600 hover:text-blue-600 relative">
+                            <i class="fas fa-bell text-xl"></i>
+                            <span class="notification-badge absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
+                            M
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-800">Maria Silva</p>
+                            <p class="text-xs text-gray-500">Paciente</p>
+                        </div>
+                        <button onclick="logout()" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-sm h-screen sticky top-0">
+            <div class="p-6">
+                <nav class="space-y-2">
+                    <button onclick="showSection('dashboard-home')" class="sidebar-item active w-full flex items-center px-4 py-3 text-left">
+                        <i class="fas fa-home mr-3"></i>
+                        <span>Início</span>
+                    </button>
+                    <button onclick="showSection('appointments')" class="sidebar-item w-full flex items-center px-4 py-3 text-left text-gray-700">
+                        <i class="fas fa-calendar-alt mr-3"></i>
+                        <span>Agendamentos</span>
+                    </button>
+                    <button onclick="showSection('symptom-quiz')" class="sidebar-item w-full flex items-center px-4 py-3 text-left text-gray-700">
+                        <i class="fas fa-comments mr-3"></i>
+                        <span>Quiz de Sintomas</span>
+                    </button>
+                    <button onclick="showSection('online-consultations')" class="sidebar-item w-full flex items-center px-4 py-3 text-left text-gray-700">
+                        <i class="fas fa-video mr-3"></i>
+                        <span>Consultas Online</span>
+                    </button>
+                    <button onclick="showSection('procedures')" class="sidebar-item w-full flex items-center px-4 py-3 text-left text-gray-700">
+                        <i class="fas fa-search mr-3"></i>
+                        <span>Explorar Procedimentos</span>
+                    </button>
+                    <button onclick="showSection('documents')" class="sidebar-item w-full flex items-center px-4 py-3 text-left text-gray-700">
+                        <i class="fas fa-file-medical mr-3"></i>
+                        <span>Meus Documentos</span>
+                    </button>
+                    <button onclick="showSection('profile')" class="sidebar-item w-full flex items-center px-4 py-3 text-left text-gray-700">
+                        <i class="fas fa-user mr-3"></i>
+                        <span>Perfil</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <!-- Dashboard Home -->
+            <div id="dashboard-home" class="section-content">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Olá, Maria! 👋</h1>
+                    <p class="text-gray-600">Como você está se sentindo hoje? Estamos aqui para cuidar de você.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Próxima Consulta -->
+                    <div class="lg:col-span-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 text-white card-hover">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Próxima Consulta</h3>
+                                <p class="text-blue-100">Dr. Carlos Oliveira - Cardiologia</p>
+                            </div>
+                            <i class="fas fa-calendar-check text-3xl text-blue-200"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-2xl font-bold">Hoje, 15:30</p>
+                                <p class="text-blue-100">Em 2 horas</p>
+                            </div>
+                            <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition duration-300 pulse-animation">
+                                Entrar na Chamada
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ações Rápidas -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">Ações Rápidas</h3>
+                        <div class="space-y-3">
+                            <button onclick="showSection('appointments')" class="w-full bg-green-50 text-green-700 p-4 rounded-xl hover:bg-green-100 transition duration-300 flex items-center">
+                                <i class="fas fa-plus-circle mr-3"></i>
+                                <span class="font-medium">Agendar Consulta</span>
+                            </button>
+                            <button onclick="showSection('symptom-quiz')" class="w-full bg-purple-50 text-purple-700 p-4 rounded-xl hover:bg-purple-100 transition duration-300 flex items-center">
+                                <i class="fas fa-comments mr-3"></i>
+                                <span class="font-medium">Quiz de Sintomas</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <!-- Mensagens Recentes -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Mensagens Recentes</h3>
+                            <span class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full">2 não lidas</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg">
+                                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                    CO
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium text-gray-800">Dr. Carlos Oliveira</p>
+                                    <p class="text-sm text-gray-600">Resultados do seu exame chegaram. Tudo normal! 👍</p>
+                                    <p class="text-xs text-gray-500 mt-1">Há 2 horas</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 p-3 hover:bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                    AS
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium text-gray-800">Dra. Ana Santos</p>
+                                    <p class="text-sm text-gray-600">Lembre-se de tomar o medicamento conforme orientado.</p>
+                                    <p class="text-xs text-gray-500 mt-1">Ontem</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resultados Recentes -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">Resultados Recentes</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-file-medical text-green-600"></i>
+                                    <div>
+                                        <p class="font-medium text-gray-800">Exame de Sangue</p>
+                                        <p class="text-sm text-gray-600">15/03/2024</p>
+                                    </div>
+                                </div>
+                                <span class="text-green-600 text-sm font-medium">Normal</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-heartbeat text-blue-600"></i>
+                                    <div>
+                                        <p class="font-medium text-gray-800">ECG</p>
+                                        <p class="text-sm text-gray-600">10/03/2024</p>
+                                    </div>
+                                </div>
+                                <button class="text-blue-600 text-sm hover:underline">Ver detalhes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointments Section -->
+            <div id="appointments" class="section-content hidden">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Agendamentos</h1>
+                    <p class="text-gray-600">Gerencie suas consultas e agende novos atendimentos</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-sm mb-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-semibold text-gray-800">Agendar Nova Consulta</h2>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Especialidade</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option>Selecione uma especialidade</option>
+                                <option>Cardiologia</option>
+                                <option>Dermatologia</option>
+                                <option>Psicologia</option>
+                                <option>Clínica Geral</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Médico</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option>Primeiro selecione uma especialidade</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Data Preferida</label>
+                            <input type="date" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <button class="mt-6 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Buscar Horários Disponíveis
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Suas Consultas</h2>
+
+                    <div class="space-y-4">
+                        <div class="border border-blue-200 bg-blue-50 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Dr. Carlos Oliveira</h3>
+                                    <p class="text-gray-600">Cardiologia</p>
+                                    <p class="text-sm text-gray-500 mt-1">Hoje, 15:30 - Consulta Online</p>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition duration-300">
+                                        Entrar na Chamada
+                                    </button>
+                                    <button class="text-gray-600 hover:text-gray-800">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Dra. Ana Santos</h3>
+                                    <p class="text-gray-600">Dermatologia</p>
+                                    <p class="text-sm text-gray-500 mt-1">22/03/2024, 10:00 - Consulta Online</p>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-800 text-sm">
+                                        Reagendar
+                                    </button>
+                                    <button class="text-gray-600 hover:text-gray-800">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Symptom Quiz Section -->
+            <div id="symptom-quiz" class="section-content hidden">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Quiz de Sintomas</h1>
+                    <p class="text-gray-600">Vamos te ajudar a encontrar o especialista certo para seus sintomas</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-sm max-w-4xl">
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-exclamation-triangle text-yellow-600 mr-3 mt-1"></i>
+                            <div>
+                                <p class="text-yellow-800 font-medium">Importante</p>
+                                <p class="text-yellow-700 text-sm">Este quiz é uma ferramenta de orientação e não substitui um diagnóstico médico profissional.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="quiz-interface">
+                        <div class="text-center mb-8">
+                            <i class="fas fa-comments text-6xl text-blue-600 mb-4"></i>
+                            <h2 class="text-2xl font-semibold mb-4">Como você está se sentindo?</h2>
+                            <p class="text-gray-600">Conte-me sobre seus sintomas para que eu possa orientá-lo melhor.</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <button onclick="startQuizFlow('chest_pain')" class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                                <div class="flex items-center">
+                                    <i class="fas fa-heartbeat text-red-500 mr-4 text-xl"></i>
+                                    <div>
+                                        <p class="font-medium">Dor no peito ou problemas cardíacos</p>
+                                        <p class="text-sm text-gray-600">Dor, palpitações, falta de ar</p>
+                                    </div>
+                                </div>
+                            </button>
+
+                            <button onclick="startQuizFlow('skin_issues')" class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                                <div class="flex items-center">
+                                    <i class="fas fa-hand-holding-medical text-pink-500 mr-4 text-xl"></i>
+                                    <div>
+                                        <p class="font-medium">Problemas de pele</p>
+                                        <p class="text-sm text-gray-600">Acne, manchas, coceira, irritações</p>
+                                    </div>
+                                </div>
+                            </button>
+
+                            <button onclick="startQuizFlow('mental_health')" class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                                <div class="flex items-center">
+                                    <i class="fas fa-brain text-purple-500 mr-4 text-xl"></i>
+                                    <div>
+                                        <p class="font-medium">Ansiedade, estresse ou tristeza</p>
+                                        <p class="text-sm text-gray-600">Questões emocionais e de saúde mental</p>
+                                    </div>
+                                </div>
+                            </button>
+
+                            <button onclick="startQuizFlow('general_symptoms')" class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                                <div class="flex items-center">
+                                    <i class="fas fa-thermometer-half text-orange-500 mr-4 text-xl"></i>
+                                    <div>
+                                        <p class="font-medium">Sintomas gerais</p>
+                                        <p class="text-sm text-gray-600">Febre, dor de cabeça, mal-estar</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="quiz-result" class="hidden">
+                        <div class="text-center">
+                            <i class="fas fa-user-md text-6xl text-green-600 mb-6"></i>
+                            <h3 class="text-2xl font-semibold mb-4">Recomendação</h3>
+                            <div id="quiz-recommendation" class="bg-green-50 p-6 rounded-xl mb-6">
+                                <!-- Recommendation will be inserted here -->
+                            </div>
+                            <div class="flex justify-center space-x-4">
+                                <button onclick="resetQuizInterface()" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition duration-300">
+                                    Fazer Novo Quiz
+                                </button>
+                                <button onclick="showSection('appointments')" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                                    Agendar Consulta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Online Consultations Section -->
+            <div id="online-consultations" class="section-content hidden">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Consultas Online</h1>
+                    <p class="text-gray-600">Suas teleconsultas e histórico de atendimentos</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl p-6 text-white card-hover">
+                        <h3 class="text-xl font-semibold mb-4">Consulta Ativa</h3>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-lg font-medium">Dr. Carlos Oliveira</p>
+                                <p class="text-green-100">Cardiologia • Hoje, 15:30</p>
+                            </div>
+                            <button class="bg-white text-green-600 px-6 py-3 rounded-full font-semibold hover:bg-green-50 transition duration-300">
+                                Entrar Agora
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">Próximas Consultas</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium text-gray-800">Dra. Ana Santos</p>
+                                    <p class="text-sm text-gray-600">22/03 às 10:00</p>
+                                </div>
+                                <span class="text-blue-600 text-sm">Em 3 dias</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium text-gray-800">Dr. Pedro Lima</p>
+                                    <p class="text-sm text-gray-600">25/03 às 14:30</p>
+                                </div>
+                                <span class="text-gray-600 text-sm">Em 6 dias</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Histórico de Consultas</h2>
+
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Dr. Carlos Oliveira</h3>
+                                    <p class="text-gray-600">Cardiologia</p>
+                                    <p class="text-sm text-gray-500">15/03/2024, 14:00</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Concluída</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <button class="text-blue-600 hover:text-blue-800 text-sm">Ver Resumo</button>
+                                <button class="text-blue-600 hover:text-blue-800 text-sm">Prescrições</button>
+                                <button class="text-blue-600 hover:text-blue-800 text-sm">Reagendar</button>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Dra. Maria Costa</h3>
+                                    <p class="text-gray-600">Dermatologia</p>
+                                    <p class="text-sm text-gray-500">10/03/2024, 16:30</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Concluída</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <button class="text-blue-600 hover:text-blue-800 text-sm">Ver Resumo</button>
+                                <button class="text-blue-600 hover:text-blue-800 text-sm">Prescrições</button>
+                                <button class="text-blue-600 hover:text-blue-800 text-sm">Reagendar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Procedures Section -->
+            <div id="procedures" class="section-content hidden">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Explorar Procedimentos</h1>
+                    <p class="text-gray-600">Entenda melhor sobre procedimentos médicos e tome decisões informadas</p>
+                </div>
+
+                <div class="mb-6">
+                    <div class="relative">
+                        <input type="text" placeholder="Buscar procedimentos..." class="w-full p-4 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Consulta Cardiológica</h3>
+                                <span class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Cardiologia</span>
+                            </div>
+                            <span class="text-2xl font-bold text-blue-600">R$ 200</span>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">Por que as pessoas fazem?</h4>
+                            <p class="text-gray-600 text-sm">Para cuidar da saúde do coração, investigar sintomas como dor no peito, palpitações ou falta de ar. Muitas pessoas buscam para prevenção ou acompanhamento de condições como hipertensão.</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">O que esperar?</h4>
+                            <p class="text-gray-600 text-sm">Conversa detalhada sobre seus sintomas, exame físico focado no coração, possível solicitação de exames complementares como ECG.</p>
+                        </div>
+
+                        <button onclick="showSection('appointments')" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                            Agendar Avaliação
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Avaliação Dermatológica</h3>
+                                <span class="bg-pink-100 text-pink-800 text-sm px-3 py-1 rounded-full">Dermatologia</span>
+                            </div>
+                            <span class="text-2xl font-bold text-pink-600">R$ 180</span>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">Por que as pessoas fazem?</h4>
+                            <p class="text-gray-600 text-sm">Para cuidar da saúde da pele, tratar acne, investigar manchas ou pintas, ou simplesmente para manter a pele saudável e bonita. Muitos buscam por questões de autoestima e bem-estar.</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">O que esperar?</h4>
+                            <p class="text-gray-600 text-sm">Análise completa da pele, orientações personalizadas de cuidados, prescrição de tratamentos quando necessário.</p>
+                        </div>
+
+                        <button onclick="showSection('appointments')" class="w-full bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition duration-300">
+                            Agendar Avaliação
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Sessão de Psicoterapia</h3>
+                                <span class="bg-purple-100 text-purple-800 text-sm px-3 py-1 rounded-full">Psicologia</span>
+                            </div>
+                            <span class="text-2xl font-bold text-purple-600">R$ 160</span>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">Por que as pessoas fazem?</h4>
+                            <p class="text-gray-600 text-sm">Para cuidar da saúde mental, lidar com ansiedade, depressão ou estresse. Muitas pessoas buscam para desenvolver autoconhecimento, melhorar relacionamentos e ter mais qualidade de vida emocional.</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">O que esperar?</h4>
+                            <p class="text-gray-600 text-sm">Conversa acolhedora e confidencial, técnicas terapêuticas personalizadas, desenvolvimento de estratégias para lidar com desafios emocionais.</p>
+                        </div>
+
+                        <button onclick="showSection('appointments')" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition duration-300">
+                            Agendar Avaliação
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Consulta Clínica Geral</h3>
+                                <span class="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full">Clínica Geral</span>
+                            </div>
+                            <span class="text-2xl font-bold text-green-600">R$ 120</span>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">Por que as pessoas fazem?</h4>
+                            <p class="text-gray-600 text-sm">Para check-ups de rotina, investigar sintomas gerais, renovar receitas ou quando não sabem qual especialista procurar. É o primeiro passo para cuidar da saúde de forma preventiva.</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">O que esperar?</h4>
+                            <p class="text-gray-600 text-sm">Avaliação geral da saúde, orientações preventivas, encaminhamentos para especialistas quando necessário, renovação de receitas.</p>
+                        </div>
+
+                        <button onclick="showSection('appointments')" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300">
+                            Agendar Avaliação
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents Section -->
+            <div id="documents" class="section-content hidden">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Meus Documentos</h1>
+                    <p class="text-gray-600">Organize e acesse seus exames, laudos e documentos médicos</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-sm mb-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-semibold text-gray-800">Upload de Documentos</h2>
+                    </div>
+
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition duration-300">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                        <p class="text-gray-600 mb-2">Arraste seus arquivos aqui ou clique para selecionar</p>
+                        <p class="text-sm text-gray-500">PDF, JPG, PNG até 10MB</p>
+                        <button class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                            Selecionar Arquivos
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-semibold text-gray-800">Seus Documentos</h2>
+                        <div class="flex space-x-2">
+                            <button class="text-gray-600 hover:text-gray-800">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                            <button class="text-blue-600">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-file-pdf text-red-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Exame de Sangue - Março 2024</p>
+                                    <p class="text-sm text-gray-600">Adicionado em 15/03/2024 • 2.3 MB</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="text-blue-600 hover:text-blue-800">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-blue-600 hover:text-blue-800">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-gray-600 hover:text-gray-800">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-heartbeat text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">ECG - Março 2024</p>
+                                    <p class="text-sm text-gray-600">Adicionado em 10/03/2024 • 1.8 MB</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="text-blue-600 hover:text-blue-800">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-blue-600 hover:text-blue-800">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-gray-600 hover:text-gray-800">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-file-medical text-green-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Receita Médica - Dr. Carlos</p>
+                                    <p class="text-sm text-gray-600">Adicionado em 05/03/2024 • 0.5 MB</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="text-blue-600 hover:text-blue-800">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-blue-600 hover:text-blue-800">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-gray-600 hover:text-gray-800">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div id="profile" class="section-content hidden">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Meu Perfil</h1>
+                    <p class="text-gray-600">Gerencie suas informações pessoais e preferências</p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="bg-white rounded-2xl p-6 shadow-sm">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-6">Informações Pessoais</h2>
+
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Nome</label>
+                                    <input type="text" value="Maria" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Sobrenome</label>
+                                    <input type="text" value="Silva" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                    <input type="email" value="maria.silva@email.com" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
+                                    <input type="tel" value="(11) 99999-9999" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Data de Nascimento</label>
+                                    <input type="date" value="1985-06-15" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">CPF</label>
+                                    <input type="text" value="123.456.789-00" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                            </div>
+
+                            <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Salvar Alterações
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-6 shadow-sm">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-6">Informações de Pagamento</h2>
+
+                            <div class="space-y-4">
+                                <div class="border border-gray-200 rounded-lg p-4 flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fas fa-credit-card text-blue-600 text-xl"></i>
+                                        <div>
+                                            <p class="font-medium text-gray-800">**** **** **** 1234</p>
+                                            <p class="text-sm text-gray-600">Visa • Expira 12/26</p>
+                                        </div>
+                                    </div>
+                                    <button class="text-blue-600 hover:text-blue-800 text-sm">Editar</button>
+                                </div>
+                            </div>
+
+                            <button class="mt-4 text-blue-600 hover:text-blue-800 text-sm">
+                                + Adicionar novo cartão
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-2xl p-6 shadow-sm text-center">
+                            <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4">
+                                MS
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Maria Silva</h3>
+                            <p class="text-gray-600 mb-4">Paciente desde março 2024</p>
+                            <button class="text-blue-600 hover:text-blue-800 text-sm">
+                                Alterar foto
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-6 shadow-sm">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Preferências</h3>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-700">Notificações por email</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" checked="" class="sr-only peer">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-700">Lembretes de consulta</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" checked="" class="sr-only peer">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-700">Notificações push</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Global state
+    let currentUser = null;
+    let currentSection = 'dashboard-home';
+
+    // Modal functions
+    function showLogin() {
+        closeModals();
+        document.getElementById('login-modal').classList.remove('hidden');
+    }
+
+    function showSignup() {
+        closeModals();
+        document.getElementById('signup-modal').classList.remove('hidden');
+    }
+
+    function closeModals() {
+        document.getElementById('login-modal').classList.add('hidden');
+        document.getElementById('signup-modal').classList.add('hidden');
+    }
+
+    // Authentication functions
+    function handleLogin(event) {
+        event.preventDefault();
+        // Simulate login
+        currentUser = { name: 'Maria Silva', email: 'maria.silva@email.com' };
+        showDashboard();
+    }
+
+    function handleSignup(event) {
+        event.preventDefault();
+        // Simulate signup
+        currentUser = { name: 'Maria Silva', email: 'maria.silva@email.com' };
+        showDashboard();
+    }
+
+    function showDashboard() {
+        document.getElementById('landing-page').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        closeModals();
+    }
+
+    function logout() {
+        currentUser = null;
+        document.getElementById('dashboard').classList.add('hidden');
+        document.getElementById('landing-page').classList.remove('hidden');
+    }
+
+    // Navigation functions
+    function showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('.section-content').forEach(section => {
+            section.classList.add('hidden');
+        });
+
+        // Show selected section
+        document.getElementById(sectionId).classList.remove('hidden');
+
+        // Update sidebar active state
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.classList.remove('active');
+        });
+
+        event.target.classList.add('active');
+        currentSection = sectionId;
+    }
+
+    // Quiz functions
+    function startQuizFlow(symptomType) {
+        const recommendations = {
+            'chest_pain': {
+                specialty: 'Cardiologia',
+                doctor: 'Dr. Carlos Oliveira',
+                description: 'Com base nos seus sintomas relacionados ao coração, recomendamos uma consulta com um cardiologista para uma avaliação completa.'
+            },
+            'skin_issues': {
+                specialty: 'Dermatologia',
+                doctor: 'Dra. Ana Santos',
+                description: 'Para problemas de pele, um dermatologista poderá te ajudar com o diagnóstico e tratamento adequado.'
+            },
+            'mental_health': {
+                specialty: 'Psicologia',
+                doctor: 'Dra. Sofia Ribeiro',
+                description: 'Para questões de saúde mental, um psicólogo pode te oferecer o suporte e as ferramentas necessárias para seu bem-estar.'
+            },
+            'general_symptoms': {
+                specialty: 'Clínica Geral',
+                doctor: 'Dr. João Silva',
+                description: 'Para sintomas gerais, um clínico geral pode fazer uma avaliação inicial e orientar sobre os próximos passos.'
+            }
+        };
+
+        const recommendation = recommendations[symptomType];
+
+        document.getElementById('quiz-interface').classList.add('hidden');
+        document.getElementById('quiz-result').classList.remove('hidden');
+
+        document.getElementById('quiz-recommendation').innerHTML = `
+                <h4 class="text-xl font-semibold mb-3">Recomendamos uma consulta com:</h4>
+                <p class="text-2xl font-bold text-green-600 mb-4">${recommendation.specialty}</p>
+                <p class="text-gray-600 mb-4">${recommendation.description}</p>
+                <div class="bg-white p-4 rounded-lg border border-green-200">
+                    <p class="text-sm text-green-800">
+                        <i class="fas fa-user-md mr-2"></i>
+                        Sugestão: ${recommendation.doctor}
+                    </p>
+                </div>
+            `;
+    }
+
+    function resetQuizInterface() {
+        document.getElementById('quiz-result').classList.add('hidden');
+        document.getElementById('quiz-interface').classList.remove('hidden');
+    }
+
+    // Close modals when clicking outside
+    document.addEventListener('click', function(event) {
+        const loginModal = document.getElementById('login-modal');
+        const signupModal = document.getElementById('signup-modal');
+
+        if (event.target === loginModal || event.target === signupModal) {
+            closeModals();
+        }
+    });
+
+    // Initialize the application
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set up initial state
+        console.log('MedConnect Patient Dashboard initialized');
+    });
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95c19c235494a169',t:'MTc1MTk5ODk3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: medium; visibility: hidden;"></iframe>
+
+</body>
