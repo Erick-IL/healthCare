@@ -18,11 +18,12 @@ public class OpenRoteService {
 
     public String askForAI(String question) {
         HttpClient client = HttpClient.newHttpClient();
+        System.out.println(openRouteServiceKey);
 
 
         String payload = String.format("""
         {
-          "model": "deepseek/deepseek-chat",
+          "model": "deepseek/deepseek-r1-0528:free",
           "messages": [
             {
               "role": "system",
@@ -40,7 +41,7 @@ public class OpenRoteService {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://openrouter.ai/api/v1/chat/completions"))
                 .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + openRouteServiceKey)
+                .header("Authorization", "Bearer " + openRouteServiceKey.trim())
                 .POST(HttpRequest.BodyPublishers.ofString(payload))
                 .build();
         HttpResponse<String> response;
