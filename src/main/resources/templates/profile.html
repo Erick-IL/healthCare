@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="pt-br"
+      layout:decorate="~{base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/profile.css}" th:rel="stylesheet" />
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Profile Section -->
+    <div id="profile" class="section-content">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Meu Perfil</h1>
+            <p class="text-gray-600">Gerencie suas informações pessoais e preferências</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 space-y-6">
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Informações Pessoais</h2>
+
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nome</label>
+                            <input type="text" value="Amanda Lidia" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Sobrenome</label>
+                            <input type="text" value="Darold" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" value="Amanda.lidia@email.com" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
+                            <input type="tel" value="(11) 99999-9999" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Data de Nascimento</label>
+                            <input type="date" value="2008-07-22" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">CPF</label>
+                            <input type="text" value="123.456.789-00" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Salvar Alterações
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Informações de Pagamento</h2>
+
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-lg p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-credit-card text-blue-600 text-xl"></i>
+                                <div>
+                                    <p class="font-medium text-gray-800">**** **** **** 1234</p>
+                                    <p class="text-sm text-gray-600">Visa • Expira 12/26</p>
+                                </div>
+                            </div>
+                            <button class="text-blue-600 hover:text-blue-800 text-sm">Editar</button>
+                        </div>
+                    </div>
+
+                    <button class="mt-4 text-blue-600 hover:text-blue-800 text-sm">
+                        + Adicionar novo cartão
+                    </button>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white rounded-2xl p-6 shadow-sm text-center">
+                    <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4">
+                        MS
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Amanda Lidia Darold</h3>
+                    <p class="text-gray-600 mb-4">Paciente desde março 2024</p>
+                    <button class="text-blue-600 hover:text-blue-800 text-sm">
+                        Alterar foto
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Preferências</h3>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 rounded-lg">
+                            <div>
+                                <p class="font-medium">Lembretes de consulta</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked="">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 rounded-lg">
+                            <div>
+                                <p class="font-medium">Notificações por email.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked="">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Segurança</h3>
+
+                        <div class="flex items-center justify-between p-4 rounded-lg">
+                            <div>
+                                <p class="font-medium">Verificação em duas etapas</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="pt-br"
+      layout:decorate="~{base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/base.css}" rel="stylesheet">
+    <link th:href="@{/css/output.css}" rel="stylesheet">
+</head>
+<body>
+    <div layout:fragment="content">
+        <!-- Dashboard Home -->
+        <div id="dashboard-home" class="section-content">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Olá, Amanda! 👋</h1>
+                <p class="text-gray-600">Como você está se sentindo hoje? Estamos aqui para cuidar de você.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                <!-- Próxima Consulta -->
+                <div class="w-full h-48 lg:col-span-2 bg-[linear-gradient(to_right,theme(colors.blue.500),theme(colors.blue.600))] rounded-2xl p-6 text-white card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Próxima Consulta</h3>
+                            <p class="text-blue-100">Dr. Carlos Oliveira - Cardiologia</p>
+                        </div>
+                        <i class="fas fa-calendar-check text-3xl text-blue-200"></i>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-2xl font-bold">Hoje, 15:30</p>
+                            <p class="text-blue-100">Em 2 horas</p>
+                        </div>
+                        <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition duration-300 pulse-animation">
+                            Entrar na Chamada
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Ações Rápidas -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Ações Rápidas</h3>
+                    <div class="space-y-3">
+                        <button onclick="window.location.href='/panel/appointments'" class="w-full bg-green-50 text-green-700 p-4 rounded-xl hover:bg-green-100 transition duration-300 flex items-center cursor-pointer">
+                            <i class="fas fa-plus-circle mr-3"></i>
+                            <span class="font-medium">Agendar Consulta</span>
+                        </button>
+                        <button onclick="window.location.href='/panel/symptom-quiz'" class="w-full bg-purple-50 text-purple-700 p-4 rounded-xl hover:bg-purple-100 transition duration-300 flex items-center">
+                            <i class="fas fa-comments mr-3"></i>
+                            <span class="font-medium">Quiz de Sintomas</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- Mensagens Recentes -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Mensagens Recentes</h3>
+                        <span class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full">2 não lidas</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                CO
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-medium text-gray-800">Dr. Carlos Oliveira</p>
+                                <p class="text-sm text-gray-600">Resultados do seu exame chegaram. Tudo normal! 👍</p>
+                                <p class="text-xs text-gray-500 mt-1">Há 2 horas</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 p-3 hover:bg-gray-50 rounded-lg">
+                            <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                AS
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-medium text-gray-800">Dra. Ana Santos</p>
+                                <p class="text-sm text-gray-600">Lembre-se de tomar o medicamento conforme orientado.</p>
+                                <p class="text-xs text-gray-500 mt-1">Ontem</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resultados Recentes -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Resultados Recentes</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-file-medical text-green-600"></i>
+                                <div>
+                                    <p class="font-medium text-gray-800">Exame de Sangue</p>
+                                    <p class="text-sm text-gray-600">15/03/2024</p>
+                                </div>
+                            </div>
+                            <span class="text-green-600 text-sm font-medium">Normal</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-heartbeat text-blue-600"></i>
+                                <div>
+                                    <p class="font-medium text-gray-800">ECG</p>
+                                    <p class="text-sm text-gray-600">10/03/2024</p>
+                                </div>
+                            </div>
+                            <button class="text-blue-600 text-sm hover:underline">Ver detalhes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

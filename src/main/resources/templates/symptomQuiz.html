@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="pt-br"
+      layout:decorate="~{base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Symptom Quiz Section -->
+    <div id="symptom-quiz" class="section-content">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Quiz de Sintomas</h1>
+            <p class="text-gray-600">Vamos te ajudar a encontrar o especialista certo para seus sintomas</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-sm max-w-4xl">
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                <div class="flex items-start">
+                    <i class="fas fa-exclamation-triangle text-yellow-600 mr-3 mt-1"></i>
+                    <div>
+                        <p class="text-yellow-800 font-medium">Importante</p>
+                        <p class="text-yellow-700 text-sm">Este quiz é uma ferramenta de orientação e não substitui um diagnóstico médico profissional.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step-1" class="step-content">
+                <div class="text-center mb-8">
+                    <i class="fas fa-comments text-6xl text-blue-600 mb-4"></i>
+                    <h2 class="text-2xl font-semibold mb-4">Como você está se sentindo?</h2>
+                    <p class="text-gray-600">Conte-me sobre seus sintomas para que eu possa orientá-lo melhor.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <button onclick="appendSymptoms('Categoria: Dor no peito ou problemas cardíacos')" class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                        <div class="flex items-center">
+                            <i class="fas fa-heartbeat text-red-500 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-medium">Dor no peito ou problemas cardíacos</p>
+                                <p class="text-sm text-gray-600">Dor, palpitações, falta de ar</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button onclick="appendSymptoms('Categoria: Problemas de pele ')" class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                        <div class="flex items-center">
+                            <i class="fas fa-hand-holding-medical text-pink-500 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-medium">Problemas de pele</p>
+                                <p class="text-sm text-gray-600">Acne, manchas, coceira, irritações</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button onclick="appendSymptoms('Categoria: Questões emocionais e de saúde mental')" class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                        <div class="flex items-center">
+                            <i class="fas fa-brain text-purple-500 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-medium">Ansiedade, estresse ou tristeza</p>
+                                <p class="text-sm text-gray-600">Questões emocionais e de saúde mental</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button onclick="appendSymptoms('Categoria: Sintomas gerais')" class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                        <div class="flex items-center">
+                            <i class="fas fa-thermometer-half text-orange-500 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-medium">Sintomas gerais</p>
+                                <p class="text-sm text-gray-600">Febre, dor de cabeça, mal-estar</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-2" class="step-content hidden">
+                <div class="text-center mb-8">
+                    <i class="fas fa-question-circle text-6xl text-blue-600 mb-4"></i>
+                    <h2 class="text-2xl font-semibold mb-4">Pergunta</h2>
+                    <p class="text-gray-600">Responda Qual é sua faixa etária para continuar.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <button onclick="appendSymptoms('faixa etária: Infantil - 0 a 12 anos')"
+                            class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                        <div class="flex items-center">
+                            <i class="fas fa-baby text mr-4 text-xl text-blue-300"></i>
+                            <div>
+                                <p class="font-medium">Infantil - 0 a 12 anos</p>
+                                <p class="text-sm text-gray-600">Criança pequena, em fase de crescimento e
+                                    desenvolvimento.</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button onclick="appendSymptoms('faixa etária: Adolescente / Jovem - 13 a 25 anos')"
+                            class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-graduate mr-4 text-xl text-orange-500"></i>
+                            <div>
+                                <p class="font-medium">Adolescente / Jovem - 13 a 25 anos</p>
+                                <p class="text-sm text-gray-600">Puberdade, início da vida adulta.</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button onclick="appendSymptoms('faixa etária: Adulto - 26 a 59 anos')"
+                            class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                        <div class="flex items-center">
+                            <i class="fas fa-user mr-4 text-xl text-blue-950"></i>
+                            <div>
+                                <p class="font-medium">Adulto - 26 a 59 anos</p>
+                                <p class="text-sm text-gray-600">Idade produtiva, fase de alta atividade.</p>
+                            </div>
+                        </div>
+                    </button>
+
+
+                    <button onclick="appendSymptoms('faixa etária: Idoso - 60 anos ou mais')"
+                            class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                        <div class="flex items-center">
+                            <i class="fas fa-person-cane mr-4 text-xl text-green-500"></i>
+                            <div>
+                                <p class="font-medium">Idoso - 60 anos ou mais </p>
+                                <p class="text-sm text-gray-600">Terceira idade, aposentadoria, envelhecimento
+                                    natural.</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-3" class="step-content hidden">
+                <div class="text-center mb-8">
+                    <i class="fas fa-question-circle text-6xl text-blue-600 mb-4"></i>
+                    <h2 class="text-2xl font-semibold mb-4">Pergunta</h2>
+                    <p class="text-gray-600">Responda qual é seu gênero para continuar.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <button onclick="appendSymptoms('Gênero: Homem')" class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-person text-blue-600 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-medium">Homem</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button onclick="appendSymptoms('Gênero: Mulher')" class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-person-dress text-pink-500 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-medium">Mulher</p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button onclick="appendSymptoms('Gênero: Outros/Prefiro não dizer')" class="w-full text-left p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition duration-300 border border-gray-200 hover:border-blue-300">
+                        <div class="flex items-center">
+                            <i class="fas fa-user text-orange-500 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-medium">Outros/Prefiro não dizer</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-4" class="step-content hidden">
+                <div class="text-center mb-8">
+                    <i class="fas fa-question-circle text-6xl text-blue-600 mb-4"></i>
+                    <h2 class="text-2xl font-semibold mb-4">Pergunta</h2>
+                    <p class="text-gray-600">Agora caso tenha mais informações para nos contar.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <label for="Symptoms" class="block font-medium text-gray-700">Descreva brevemente o que você está sentindo:</label>
+
+                    <textarea id="Symptoms" name="userSymptoms"
+                              class="w-full p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition resize-none"
+                              rows="10"
+                              placeholder="Ex: Estou com dor de cabeça forte há 2 dias. Também tive febre leve e estou me sentindo muito cansado.
+Você pode incluir informações como:
+    • Principais sintomas
+    • Há quanto tempo começou
+    • Intensidade da dor (leve, moderada, forte)
+    • Doenças pré-existentes (ex: diabetes)
+    • Medicamentos em uso
+    • Estilo de vida (fuma, bebe, dorme bem)
+    • Histórico familiar relevante"></textarea>
+                </div>
+
+                <div class="mt-4 text-right">
+                    <button
+                            onclick="sendSymptoms()"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow transition">
+                        Enviar
+                    </button>
+                </div>
+            </div>
+
+            <div id="result" class="step-content hidden">
+                <div class="max-w-xl mx-auto h-[70vh] flex flex-col border rounded-lg shadow overflow-hidden">
+                    <div id="chatArea" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"></div>
+
+                    <div class="p-4 border-t bg-white flex gap-2">
+                        <label for="userSymptoms"></label>
+                        <textarea id="userSymptoms" rows="1" placeholder="Digite sua mensagem..."
+                                  class="flex-1 resize-none border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                        <button onclick="sendSymptoms()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Enviar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

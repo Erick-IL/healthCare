@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedConnect - Sua Saúde em Suas Mãos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link th:href="@{/css/base.css}" rel="stylesheet">
+    <link th:href="@{/css/output.css}" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-item {
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-item:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+        }
+
+        .sidebar-item.active {
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .chat-message {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .notification-badge {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+    </style>
+<body class="bg-gray-50">
+<!-- Landing Page (Pre-Login) -->
+<div id="landing-page" class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-heartbeat text-3xl text-blue-600 mr-2"></i>
+                        <span class="text-2xl font-bold text-gray-800">MedConnect</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="showLogin()" class="text-gray-700 hover:text-blue-600 font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition duration-300">
+                        Entrar
+                    </button>
+                    <button onclick="showSignup()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Criar Conta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-8">
+                Sua saúde, <br>
+                <span class="text-yellow-300">no seu tempo</span>
+            </h1>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <i class="fas fa-video text-4xl mb-4 text-yellow-300"></i>
+                    <h3 class="text-xl font-semibold mb-2">Fale com um médico de casa</h3>
+                    <p class="text-white/80">Consultas por vídeo quando você precisar</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <i class="fas fa-user-md text-4xl mb-4 text-yellow-300"></i>
+                    <h3 class="text-xl font-semibold mb-2">Especialistas a um clique</h3>
+                    <p class="text-white/80">Acesso direto aos melhores profissionais</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <i class="fas fa-clock text-4xl mb-4 text-yellow-300"></i>
+                    <h3 class="text-xl font-semibold mb-2">Sem filas, sem espera</h3>
+                    <p class="text-white/80">Agende e seja atendido no horário</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+                <button onclick="showSignup()" class="w-full sm:w-auto bg-yellow-400 text-gray-800 px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-300 transition duration-300 shadow-lg">
+                    Criar Conta Gratuita
+                </button>
+                <button onclick="showLogin()" class="w-full sm:w-auto bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/30 transition duration-300">
+                    Já tenho conta
+                </button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Login Modal -->
+<div id="login-modal" class="fixed inset-0 hidden bg-[rgba(0,0,0,0.5)] flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+        <div class="text-center mb-6">
+            <i class="fas fa-heartbeat text-4xl text-blue-600 mb-4"></i>
+            <h2 class="text-2xl font-bold text-gray-800">Entrar na sua conta</h2>
+            <p class="text-gray-600">Acesse seu painel de saúde</p>
+        </div>
+
+        <form onsubmit="handleLogin(event)" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input type="email" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="seu@email.com">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                <input type="password" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Sua senha">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                Entrar
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-gray-600">Não tem conta?
+                <button onclick="showSignup()" class="text-blue-600 hover:underline">Criar conta</button>
+            </p>
+        </div>
+
+        <button onclick="closeModals()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signup-modal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+        <div class="text-center mb-6">
+            <i class="fas fa-heartbeat text-4xl text-blue-600 mb-4"></i>
+            <h2 class="text-2xl font-bold text-gray-800">Criar sua conta</h2>
+            <p class="text-gray-600">Comece a cuidar da sua saúde hoje</p>
+        </div>
+
+        <form onsubmit="handleSignup(event)" class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nome</label>
+                    <input type="text" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Seu nome">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Sobrenome</label>
+                    <input type="text" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Sobrenome">
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input type="email" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="seu@email.com">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
+                <input type="tel" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="(11) 99999-9999">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                <input type="password" required="" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Crie uma senha">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                Criar Conta
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-gray-600">Já tem conta?
+                <button onclick="showLogin()" class="text-blue-600 hover:underline">Entrar</button>
+            </p>
+        </div>
+
+        <button onclick="closeModals()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+    </div>
+</div>
+
+<script>
+    // Global state
+    let currentUser = null;
+    let currentSection = 'dashboard-home';
+
+    // Modal functions
+    function showLogin() {
+        closeModals();
+        document.getElementById('login-modal').classList.remove('hidden');
+    }
+
+    function showSignup() {
+        closeModals();
+        document.getElementById('signup-modal').classList.remove('hidden');
+    }
+
+    function closeModals() {
+        document.getElementById('login-modal').classList.add('hidden');
+        document.getElementById('signup-modal').classList.add('hidden');
+    }
+
+    // Authentication functions
+    function handleLogin(event) {
+        event.preventDefault();
+        currentUser = { name: 'Maria Silva', email: 'maria.silva@email.com' };
+        window.location.assign("/panel/dashboard");
+
+    }
+
+    function handleSignup(event) {
+        event.preventDefault();
+        // Simulate signup
+        currentUser = { name: 'Maria Silva', email: 'maria.silva@email.com' };
+        showDashboard();
+    }
+
+    if (document.getElementById('login-modal').hasAttribute('hidden') || document.getElementById('signup-modal').hasAttribute('hidden')) {
+        const page = document.getElementById('landing-page');
+        page.addEventListener("click", closeModals)
+    }
+
+
+</script>
+</body>

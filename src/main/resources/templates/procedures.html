@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="pt-br"
+      layout:decorate="~{base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Procedures Section -->
+    <div id="procedures" class="section-content">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Explorar Procedimentos</h1>
+            <p class="text-gray-600">Entenda melhor sobre procedimentos médicos e tome decisões informadas</p>
+        </div>
+
+        <div class="mb-6">
+            <div class="relative">
+                <input type="text" placeholder="Buscar procedimentos..." class="w-full p-4 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Consulta Cardiológica</h3>
+                        <span class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Cardiologia</span>
+                    </div>
+                    <span class="text-2xl font-bold text-blue-600">R$ 200</span>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="font-semibold text-gray-800 mb-2">Por que as pessoas fazem?</h4>
+                    <p class="text-gray-600 text-sm">Para cuidar da saúde do coração, investigar sintomas como dor no peito, palpitações ou falta de ar. Muitas pessoas buscam para prevenção ou acompanhamento de condições como hipertensão.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="font-semibold text-gray-800 mb-2">O que esperar?</h4>
+                    <p class="text-gray-600 text-sm">Conversa detalhada sobre seus sintomas, exame físico focado no coração, possível solicitação de exames complementares como ECG.</p>
+                </div>
+
+                <button onclick="showSection('appointments')" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Agendar Avaliação
+                </button>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Avaliação Dermatológica</h3>
+                        <span class="bg-pink-100 text-pink-800 text-sm px-3 py-1 rounded-full">Dermatologia</span>
+                    </div>
+                    <span class="text-2xl font-bold text-pink-600">R$ 180</span>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="font-semibold text-gray-800 mb-2">Por que as pessoas fazem?</h4>
+                    <p class="text-gray-600 text-sm">Para cuidar da saúde da pele, tratar acne, investigar manchas ou pintas, ou simplesmente para manter a pele saudável e bonita. Muitos buscam por questões de autoestima e bem-estar.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="font-semibold text-gray-800 mb-2">O que esperar?</h4>
+                    <p class="text-gray-600 text-sm">Análise completa da pele, orientações personalizadas de cuidados, prescrição de tratamentos quando necessário.</p>
+                </div>
+
+                <button onclick="showSection('appointments')" class="w-full bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition duration-300">
+                    Agendar Avaliação
+                </button>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Sessão de Psicoterapia</h3>
+                        <span class="bg-purple-100 text-purple-800 text-sm px-3 py-1 rounded-full">Psicologia</span>
+                    </div>
+                    <span class="text-2xl font-bold text-purple-600">R$ 160</span>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="font-semibold text-gray-800 mb-2">Por que as pessoas fazem?</h4>
+                    <p class="text-gray-600 text-sm">Para cuidar da saúde mental, lidar com ansiedade, depressão ou estresse. Muitas pessoas buscam para desenvolver autoconhecimento, melhorar relacionamentos e ter mais qualidade de vida emocional.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="font-semibold text-gray-800 mb-2">O que esperar?</h4>
+                    <p class="text-gray-600 text-sm">Conversa acolhedora e confidencial, técnicas terapêuticas personalizadas, desenvolvimento de estratégias para lidar com desafios emocionais.</p>
+                </div>
+
+                <button onclick="showSection('appointments')" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition duration-300">
+                    Agendar Avaliação
+                </button>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Consulta Clínica Geral</h3>
+                        <span class="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full">Clínica Geral</span>
+                    </div>
+                    <span class="text-2xl font-bold text-green-600">R$ 120</span>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="font-semibold text-gray-800 mb-2">Por que as pessoas fazem?</h4>
+                    <p class="text-gray-600 text-sm">Para check-ups de rotina, investigar sintomas gerais, renovar receitas ou quando não sabem qual especialista procurar. É o primeiro passo para cuidar da saúde de forma preventiva.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="font-semibold text-gray-800 mb-2">O que esperar?</h4>
+                    <p class="text-gray-600 text-sm">Avaliação geral da saúde, orientações preventivas, encaminhamentos para especialistas quando necessário, renovação de receitas.</p>
+                </div>
+
+                <button onclick="showSection('appointments')" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300">
+                    Agendar Avaliação
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

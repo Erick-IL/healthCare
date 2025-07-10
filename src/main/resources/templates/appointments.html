@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="pt-br"
+      layout:decorate="~{base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendamentos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="text-gray-800">
+<div layout:fragment="content">
+    <div class="container mx-auto p-4 md:p-8">
+    <div class="mb-8 md:mb-12 max-w-4xl mx-auto">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Agendamentos</h1>
+        <p class="text-gray-600 text-lg">Gerencie suas consultas e agende novos atendimentos</p>
+    </div>
+
+    <div id="booking-flow-container" class="max-w-4xl mx-auto">
+
+        <div id="step1" class="step-content">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">1. Com qual especialista você gostaria de falar?</h2>
+                <div id="specialty-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"></div>
+            </div>
+        </div>
+
+        <div id="step2" class="step-content hidden">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <div class="flex items-center mb-8">
+                    <button id="backToStep1" class="text-gray-500 hover:text-blue-600 mr-4 p-2 rounded-full hover:bg-gray-100">&larr; Voltar</button>
+                    <h2 class="text-2xl font-bold text-gray-800 text-center flex-grow">2. Estes são os profissionais disponíveis</h2>
+                </div>
+                <div id="doctorsList" class="space-y-4"></div>
+            </div>
+        </div>
+
+        <div id="step3" class="step-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div id="doctorCard" class="bg-white rounded-2xl shadow-lg p-6 lg:col-span-1"></div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 lg:col-span-2">
+                    <div class="flex items-center mb-8">
+                        <button id="backToStep2" class="text-gray-500 hover:text-blue-600 mr-4 p-2 rounded-full hover:bg-gray-100">&larr; Voltar</button>
+                        <h2 class="text-2xl font-bold text-gray-800 text-center flex-grow">3. Escolha a data e o horário</h2>
+                    </div>
+                    <div id="calendarContainer" class="mb-6"></div>
+                    <div id="timeSlotsContainer"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="step4" class="step-content hidden text-center">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <i class="fas fa-check-circle text-6xl text-green-500 mb-6"></i>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Confirme seu agendamento</h2>
+                <div id="confirmationDetails" class="bg-slate-50 rounded-xl p-6 mb-6 max-w-md mx-auto"></div>
+                <div class="flex justify-center gap-4">
+                    <button id="backToStep3" class="text-gray-600 bg-gray-200 hover:bg-gray-300 font-bold py-3 px-6 rounded-xl transition-colors">Voltar</button>
+                    <button id="confirmBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl transition-colors shadow-lg">Confirmar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</body>
+</html>
